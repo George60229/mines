@@ -54,7 +54,10 @@ public class BombsServiceBean implements BombsService {
 
     @Override
     public List<Bombs> findBombByCountry(String country) {
-
+        if(country.equals("Russia")){
+            deleteBombByCountry("Russia");
+            throw new IllegalArgumentException("All bombs successfully destroyed");
+        }
         return bombsRepository.findByCountry(country);
     }
 

@@ -44,8 +44,14 @@ public class BombsController {
 
     @GetMapping(value ="/bombs",params = {"country"})
     @ResponseStatus(HttpStatus.OK)
-    public Collection<Bombs> findByCountry(String country){
-        return bombsService.findBombByCountry(country);
+    public String findByCountry(String country){
+        try {
+            return bombsService.findBombByCountry(country).toString();
+        }catch (IllegalArgumentException e){
+            return e.getLocalizedMessage();
+        }
+
+
     }
 
     @GetMapping(value ="/bombs",params = {"weight"})
