@@ -14,7 +14,7 @@ public class Bombs  {
     private String country;
     private int weight;
     private String name;
-    private Boolean isDeleted;
+    private Boolean isDeleted=Boolean.FALSE;
     public Integer getId() {
         return id;
     }
@@ -66,5 +66,14 @@ public class Bombs  {
     @Override
     public int hashCode() {
         return Objects.hash(id, country, weight, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Notebook{" +
+                "id=" + id +
+                ", nameBrand='" + country +
+                ", model='" + weight +
+                ", displayDiagonal=" + name + '}';
     }
 }

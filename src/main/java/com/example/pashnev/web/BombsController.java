@@ -50,10 +50,12 @@ public class BombsController {
 
     @GetMapping(value ="/bombs",params = {"weight"})
     @ResponseStatus(HttpStatus.OK)
-    public Collection<Bombs> findByWeight(Integer weight){
-
-            return bombsService.findBombByWeight(weight);
-
+    public String findByWeight(Integer weight){
+        try {
+            return bombsService.findBombByWeight(weight).toString();
+        }catch (IllegalArgumentException e){
+           return e.getLocalizedMessage();
+        }
 
     }
     @DeleteMapping(value = "/bombs",params = {"country"})
