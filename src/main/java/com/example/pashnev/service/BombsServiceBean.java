@@ -2,13 +2,16 @@ package com.example.pashnev.service;
 
 import com.example.pashnev.domain.Bombs;
 import com.example.pashnev.repository.BombsRepository;
+
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.List;
 
-
 @Service
+
 public class BombsServiceBean implements BombsService {
     private final BombsRepository bombsRepository;
 
@@ -46,5 +49,15 @@ public class BombsServiceBean implements BombsService {
     public Bombs findBomb(Integer id){
         return bombsRepository.getById(id);
     }
-
+    @Override
+    public List<Bombs>findBombByCountry(String country){
+        return bombsRepository.findByCountry(country);
+    }
+    @Override
+    public List<Bombs> findBombByWeight(Integer weight){
+        if(weight<0){
+            throw new IllegalArgumentException("Wrong parameter");
+        }
+        return bombsRepository.findByWeight(weight);
+    }
 }

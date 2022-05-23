@@ -2,11 +2,11 @@ package com.example.pashnev.web;
 
 import com.example.pashnev.domain.Bombs;
 import com.example.pashnev.service.BombsServiceBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -40,4 +40,18 @@ public class BombsController {
     public void findBomb(@PathVariable Integer id){
         bombsServiceBean.findBomb(id);
     }
+
+    @GetMapping(value ="/bombs",params = {"country"})
+    @ResponseStatus(HttpStatus.OK)
+    public Collection<Bombs> findBombByCountry(String country){
+        return bombsServiceBean.findBombByCountry(country);
+    }
+
+    @GetMapping(value ="/bombs",params = {"weight"})
+    @ResponseStatus(HttpStatus.OK)
+    public Collection<Bombs> findByWeight(Integer weight){
+        return bombsServiceBean.findBombByWeight(weight);
+    }
+
+
 }

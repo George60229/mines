@@ -2,6 +2,7 @@ package com.example.pashnev.domain;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 @Entity
@@ -13,7 +14,7 @@ public class Bombs  {
     private String country;
     private int weight;
     private String name;
-
+    private Boolean isDeleted;
     public Integer getId() {
         return id;
     }
@@ -24,6 +25,14 @@ public class Bombs  {
 
     public String getCountry() {
         return country;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     public void setCountry(String country) {
@@ -44,5 +53,18 @@ public class Bombs  {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bombs bombs = (Bombs) o;
+        return weight == bombs.weight && Objects.equals(id, bombs.id) && Objects.equals(country, bombs.country) && Objects.equals(name, bombs.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, country, weight, name);
     }
 }
