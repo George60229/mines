@@ -1,6 +1,7 @@
 package com.example.pashnev.web;
 
 import com.example.pashnev.domain.Bombs;
+import com.example.pashnev.service.BombsService;
 import com.example.pashnev.service.BombsServiceBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,51 +15,51 @@ import java.util.List;
 
 public class BombsController {
 
-    private final BombsServiceBean bombsServiceBean;
+    private final BombsService bombsService;
 
-    public BombsController(BombsServiceBean bombsServiceBean) {
-        this.bombsServiceBean = bombsServiceBean;
+    public BombsController(BombsServiceBean bombsService) {
+        this.bombsService = bombsService;
     }
 
     @PostMapping("/bombs")
     @ResponseStatus(HttpStatus.CREATED)
     public Bombs createBombs(@RequestBody Bombs myBomb){
-        return bombsServiceBean.create(myBomb);
+        return bombsService.create(myBomb);
     }
     @GetMapping("/bombs")
     @ResponseStatus(HttpStatus.OK)
     public List<Bombs> showBombs(){
-        return bombsServiceBean.show();
+        return bombsService.show();
     }
     @DeleteMapping("/bombs")
     @ResponseStatus(HttpStatus.OK)
     public void deleteBombs(){
-        bombsServiceBean.deleteAll();
+        bombsService.deleteAll();
     }
     @GetMapping("/bombs/{id}")
     @ResponseStatus
     public void findBomb(@PathVariable Integer id){
-        bombsServiceBean.findBomb(id);
+        bombsService.findBomb(id);
     }
 
     @GetMapping(value ="/bombs",params = {"country"})
     @ResponseStatus(HttpStatus.OK)
     public Collection<Bombs> findByCountry(String country){
-        return bombsServiceBean.findBombByCountry(country);
+        return bombsService.findBombByCountry(country);
     }
 
     @GetMapping(value ="/bombs",params = {"weight"})
     @ResponseStatus(HttpStatus.OK)
     public Collection<Bombs> findByWeight(Integer weight){
 
-            return bombsServiceBean.findBombByWeight(weight);
+            return bombsService.findBombByWeight(weight);
 
 
     }
     @DeleteMapping(value = "/bombs",params = {"country"})
     @ResponseStatus(HttpStatus.OK)
     public Collection<Bombs> deleteByCountry(String country){
-        return bombsServiceBean.deleteBombByCountry(country);
+        return bombsService.deleteBombByCountry(country);
     }
 
 
