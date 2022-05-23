@@ -43,18 +43,23 @@ public class BombsController {
 
     @GetMapping(value ="/bombs",params = {"country"})
     @ResponseStatus(HttpStatus.OK)
-    public Collection<Bombs> findBombByCountry(String country){
+    public Collection<Bombs> findByCountry(String country){
         return bombsServiceBean.findBombByCountry(country);
     }
 
     @GetMapping(value ="/bombs",params = {"weight"})
     @ResponseStatus(HttpStatus.OK)
     public Collection<Bombs> findByWeight(Integer weight){
-        return bombsServiceBean.findBombByWeight(weight);
+
+            return bombsServiceBean.findBombByWeight(weight);
+
+
     }
     @DeleteMapping(value = "/bombs",params = {"country"})
     @ResponseStatus(HttpStatus.OK)
-    public void deleteBombByCountry(String country){
-        bombsServiceBean.deleteBombByCountry(country);
+    public Collection<Bombs> deleteByCountry(String country){
+        return bombsServiceBean.deleteBombByCountry(country);
     }
+
+
 }

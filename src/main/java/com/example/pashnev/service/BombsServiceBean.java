@@ -5,9 +5,9 @@ import com.example.pashnev.repository.BombsRepository;
 
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -41,28 +41,36 @@ public class BombsServiceBean implements BombsService {
 
         return bombsRepository.findAll();
     }
+
     @Override
-    public void deleteAll(){
+    public void deleteAll() {
         bombsRepository.deleteAll();
     }
+
     @Override
-    public Bombs findBomb(Integer id){
+    public Bombs findBomb(Integer id) {
         return bombsRepository.getById(id);
     }
+
     @Override
-    public List<Bombs>findBombByCountry(String country){
+    public List<Bombs> findBombByCountry(String country) {
+
         return bombsRepository.findByCountry(country);
     }
+
     @Override
-    public List<Bombs> findBombByWeight(Integer weight){
-        if(weight<0){
+    public List<Bombs> findBombByWeight(Integer weight) {
+        if (weight < 0) {
             throw new IllegalArgumentException("Wrong parameter");
         }
         return bombsRepository.findByWeight(weight);
     }
-    @Override
-    public void deleteBombByCountry(String country){
 
-        bombsRepository.deleteByCountry(country);
+    @Override
+    public Collection<Bombs> deleteBombByCountry(String country) {
+        return bombsRepository.deleteByCountry(country);
+
     }
+
+
 }

@@ -2,7 +2,7 @@ package com.example.pashnev.repository;
 
 import com.example.pashnev.domain.Bombs;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.stereotype.Repository;
 
 
@@ -14,6 +14,6 @@ public interface BombsRepository extends JpaRepository<Bombs,Integer> {
 
     List<Bombs> findByWeight(Integer weight);
 
-    void deleteByCountry(String country);
+    List<Bombs> deleteByCountry(String country);
 
 }

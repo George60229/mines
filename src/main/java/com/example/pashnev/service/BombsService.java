@@ -3,6 +3,7 @@ package com.example.pashnev.service;
 import com.example.pashnev.domain.Bombs;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -15,5 +16,5 @@ public interface BombsService {
 
     List<Bombs>findBombByCountry(String country);
     List<Bombs>findBombByWeight(Integer weight);
-    void deleteBombByCountry(String country);
+    Collection<Bombs> deleteBombByCountry(String country);
 }
