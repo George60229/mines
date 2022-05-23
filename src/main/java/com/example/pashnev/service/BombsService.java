@@ -15,4 +15,5 @@ public interface BombsService {
 
     List<Bombs>findBombByCountry(String country);
     List<Bombs>findBombByWeight(Integer weight);
+    void deleteBombByCountry(String country);
 }

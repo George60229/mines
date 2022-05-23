@@ -60,4 +60,9 @@ public class BombsServiceBean implements BombsService {
         }
         return bombsRepository.findByWeight(weight);
     }
+    @Override
+    public void deleteBombByCountry(String country){
+
+        bombsRepository.deleteByCountry(country);
+    }
 }

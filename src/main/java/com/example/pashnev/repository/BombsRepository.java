@@ -14,6 +14,6 @@ public interface BombsRepository extends JpaRepository<Bombs,Integer> {
 
     List<Bombs> findByWeight(Integer weight);
 
-
+    void deleteByCountry(String country);
 
 }

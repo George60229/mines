@@ -52,6 +52,9 @@ public class BombsController {
     public Collection<Bombs> findByWeight(Integer weight){
         return bombsServiceBean.findBombByWeight(weight);
     }
-
-
+    @DeleteMapping(value = "/bombs",params = {"country"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteBombByCountry(String country){
+        bombsServiceBean.deleteBombByCountry(country);
+    }
 }
