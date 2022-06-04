@@ -12,14 +12,16 @@ import java.util.Date;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<?>parameterWrongEx(ParameterWrongException e, WebRequest req){
+    @ExceptionHandler(WeightWrongException.class)
+    public ResponseEntity<?>WeightWrongEx(WeightWrongException e, WebRequest req){
         ErrorDetails error= new ErrorDetails(new Date(),"Wrong parameter <weight>",req.getDescription(false));
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
-    @Data
-    @AllArgsConstructor
-    private static class MyGlobalExceptionHandler {
-        private String message;
+
+    @ExceptionHandler(CountryWrongException.class)
+    public ResponseEntity<?>CountryWrongEx(CountryWrongException e, WebRequest req){
+        ErrorDetails error= new ErrorDetails(new Date(),"Wrong parameter <country>",req.getDescription(false));
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+
 }

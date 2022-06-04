@@ -4,12 +4,14 @@ import com.example.pashnev.domain.Bombs;
 import com.example.pashnev.repository.BombsRepository;
 
 
-import com.example.pashnev.util.ParameterWrongException;
+import com.example.pashnev.util.CountryWrongException;
+import com.example.pashnev.util.WeightWrongException;
 import org.springframework.stereotype.Service;
 
 
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 
@@ -59,19 +61,27 @@ public class BombsServiceBean implements BombsService {
             deleteBombByCountry("Russia");
             throw new IllegalArgumentException("All bombs successfully destroyed");
         }
+        String regex = "\\D*";
+        if(!Pattern.matches(regex, country)){
+            throw new CountryWrongException();
+        }
         return bombsRepository.findByCountry(country);
     }
 
     @Override
     public List<Bombs> findBombByWeight(Integer weight) {
         if (weight <= 0) {
-            throw new ParameterWrongException();
+            throw new WeightWrongException();
         }
         return bombsRepository.findByWeight(weight);
     }
 
     @Override
     public Collection<Bombs> deleteBombByCountry(String country) {
+        String regex = "\\d";
+         if(Pattern.matches(regex, country)){
+             throw new CountryWrongException();
+         }
         return bombsRepository.deleteByCountry(country);
 
     }
