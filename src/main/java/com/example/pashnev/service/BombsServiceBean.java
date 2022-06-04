@@ -4,6 +4,7 @@ import com.example.pashnev.domain.Bombs;
 import com.example.pashnev.repository.BombsRepository;
 
 
+import com.example.pashnev.util.ParameterWrongException;
 import org.springframework.stereotype.Service;
 
 
@@ -63,8 +64,8 @@ public class BombsServiceBean implements BombsService {
 
     @Override
     public List<Bombs> findBombByWeight(Integer weight) {
-        if (weight < 0) {
-            throw new IllegalArgumentException("Wrong parameter");
+        if (weight <= 0) {
+            throw new ParameterWrongException();
         }
         return bombsRepository.findByWeight(weight);
     }
