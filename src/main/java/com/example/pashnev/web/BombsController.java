@@ -1,12 +1,14 @@
 package com.example.pashnev.web;
 
 import com.example.pashnev.domain.Bombs;
+import com.example.pashnev.dto.BombDto;
 import com.example.pashnev.service.BombsService;
 import com.example.pashnev.service.BombsServiceBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,15 +41,15 @@ public class BombsController {
         bombsService.deleteAll();
     }
 
-    @GetMapping("/bombs/{id}")
-    @ResponseStatus
-    public void findBomb(@PathVariable Integer id) {
-        bombsService.findBomb(id);
+    @GetMapping(value="/bombs",params={"id"})
+    @ResponseStatus(HttpStatus.OK)
+    public BombDto findBomb( Integer id) {
+        return bombsService.findBomb(id);
     }
 
     @GetMapping(value = "/bombs", params = {"country"})
     @ResponseStatus(HttpStatus.OK)
-    public List<Bombs> findByCountry(String country) {
+    public Collection<Bombs> findByCountry(String country) {
 
         return bombsService.findBombByCountry(country);
 
@@ -56,7 +58,7 @@ public class BombsController {
 
     @GetMapping(value = "/bombs", params = {"weight"})
     @ResponseStatus(HttpStatus.OK)
-    public List<Bombs> findByWeight(Integer weight) {
+    public Collection<Bombs> findByWeight(Integer weight) {
 
         return bombsService.findBombByWeight(weight);
 

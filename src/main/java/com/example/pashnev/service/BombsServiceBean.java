@@ -1,6 +1,8 @@
 package com.example.pashnev.service;
 
+import com.example.pashnev.config.MappingBomb;
 import com.example.pashnev.domain.Bombs;
+import com.example.pashnev.dto.BombDto;
 import com.example.pashnev.repository.BombsRepository;
 
 
@@ -17,9 +19,10 @@ import java.util.regex.Pattern;
 
 public class BombsServiceBean implements BombsService {
     private final BombsRepository bombsRepository;
-
-    public BombsServiceBean(BombsRepository bombsRepository) {
+    private final MappingBomb mappingBomb;
+    public BombsServiceBean(BombsRepository bombsRepository, MappingBomb mappingBomb) {
         this.bombsRepository = bombsRepository;
+        this.mappingBomb = mappingBomb;
     }
 
     @Override
@@ -51,8 +54,9 @@ public class BombsServiceBean implements BombsService {
     }
 
     @Override
-    public Bombs findBomb(Integer id) {
-        return bombsRepository.getById(id);
+    public BombDto findBomb(Integer id) {
+        return mappingBomb.mapToBombDto(bombsRepository.findById(id).orElse(new Bombs()));
+
     }
 
     @Override

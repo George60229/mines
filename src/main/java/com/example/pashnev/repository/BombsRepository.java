@@ -1,6 +1,7 @@
 package com.example.pashnev.repository;
 
 import com.example.pashnev.domain.Bombs;
+import com.example.pashnev.dto.BombDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,8 @@
 package com.example.pashnev.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -10,10 +12,12 @@ import java.util.Objects;
 public class Bombs  {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @JsonIgnore
     private Integer id;
     private String country;
     private int weight;
     private String name;
+    @JsonIgnore
     private Boolean isDeleted=Boolean.FALSE;
     public Integer getId() {
         return id;
