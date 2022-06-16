@@ -1,11 +1,17 @@
 # Spring Boot configuration
 spring:
   # Database
+
+  security:
+    user:
+      name: George
+      password: 12345
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/employee
     username: postgres
     password: 174180183
+
 
   # JPA properties
   jpa:

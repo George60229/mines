@@ -11,8 +11,7 @@ import com.example.pashnev.util.WeightWrongException;
 import org.springframework.stereotype.Service;
 
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 @Service
@@ -27,6 +26,9 @@ public class BombsServiceBean implements BombsService {
 
     @Override
     public Bombs create(Bombs myBombs) {
+        if(isExist(myBombs)){
+            return new Bombs();
+        }
         try {
             if (!myBombs.getCountry().equals("Russia") && myBombs.getCountry() != null) {
                 return bombsRepository.save(myBombs);
@@ -89,6 +91,13 @@ public class BombsServiceBean implements BombsService {
         return bombsRepository.deleteByCountry(country);
 
     }
+    public boolean isExist(Bombs myBomb){
 
+        ArrayList myColl = new ArrayList(findBombByCountry(myBomb.getCountry()));
+        return myColl.contains(myBomb);
+
+
+
+    }
 
 }

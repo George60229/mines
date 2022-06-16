@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 
-public class BombsController {
+public class BombsController implements BombSwagger{
 
     private final BombsService bombsService;
 
@@ -41,13 +41,13 @@ public class BombsController {
         bombsService.deleteAll();
     }
 
-    @GetMapping(value="/bombs",params={"id"})
+    @GetMapping(value="/bombs/id",params={"id"})
     @ResponseStatus(HttpStatus.OK)
     public BombDto findBomb( Integer id) {
         return bombsService.findBomb(id);
     }
 
-    @GetMapping(value = "/bombs", params = {"country"})
+    @GetMapping(value = "/bombs/country",params={"country"})
     @ResponseStatus(HttpStatus.OK)
     public Collection<Bombs> findByCountry(String country) {
 
@@ -56,7 +56,7 @@ public class BombsController {
 
     }
 
-    @GetMapping(value = "/bombs", params = {"weight"})
+    @GetMapping(value = "/bombs/weight", params = {"weight"})
     @ResponseStatus(HttpStatus.OK)
     public Collection<Bombs> findByWeight(Integer weight) {
 
@@ -64,7 +64,7 @@ public class BombsController {
 
     }
 
-    @DeleteMapping(value = "/bombs", params = {"country"})
+    @DeleteMapping(value = "/bombs/country", params = {"country"})
     @ResponseStatus(HttpStatus.OK)
     public Collection<Bombs> deleteByCountry(String country) {
         return bombsService.deleteBombByCountry(country);
